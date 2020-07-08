@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PH.MessengerSustem
+namespace PH.MessengerSystem
 {
     public static class Messenger
     {
