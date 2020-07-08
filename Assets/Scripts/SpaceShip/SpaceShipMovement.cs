@@ -2,35 +2,37 @@
 using UnityEngine;
 using PH.MessengerSystem.MessageTargets;
 using PH.MessengerSystem;
+using System;
 
 namespace PH.SpaceShip
 {
     [RequireComponent(typeof(Rigidbody))]
     public class SpaceShipMovement : MonoBehaviour
     {
-        [Header("Settings")]
-        [SerializeField] [Min(0)] private float baseSpeed;
-        [SerializeField] [Min(0)] private float acceleration;
-        [SerializeField] [Min(0)] private float maxSpeedWithAcceleration;
+        [Header("Speed")]
+        [SerializeField] [Min(0f)] private float baseSpeed;
+        [SerializeField] [Min(1f)] private float rotationSpeed;
+
+        [Header("Acceleration")]
+        [SerializeField] [Min(1f)] private float maxAcceleration;
+        [SerializeField] [Min(0f)] private float accelerationStep;
 
         private Rigidbody rb;
+
         private float speed;
+        private float acceleration;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
-        }
-
-        private void Start()
-        {
             speed = baseSpeed;
         }
 
         private void FixedUpdate()
         {
             Move();
+            Rotate();
             Acceleration();
-            Deceleration();
         }
 
         private void Move()
@@ -38,36 +40,23 @@ namespace PH.SpaceShip
             var xMovement = Input.GetAxisRaw("Horizontal");
             var yMovement = Input.GetAxisRaw("Vertical");
             
-            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * speed * Time.fixedDeltaTime;
+            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * (speed + acceleration) * Time.fixedDeltaTime;
 
             rb.MovePosition(rb.position + movement);
-
-            Messenger.Execute<ICameraPlayerMessageTarger>(target => target.OnCameraPosChange(rb.position));
         }
+
+        private void Rotate()
+        {
+            var xRotation = rotationSpeed * Input.GetAxis("Roll");
+            var rotation = Quaternion.Euler(new Vector3(0f, 0f, xRotation * rotationSpeed * Time.fixedDeltaTime));
+            rb.MoveRotation(rb.rotation * rotation);
+        }
+
         private void Acceleration()
         {
-            //if(nitro>=1)  - next update feature?
+            var accelerationMode = Input.GetAxisRaw("Acceleration") * 2 - 1;
 
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (speed < maxSpeedWithAcceleration)
-                {
-                    speed += acceleration * Time.fixedDeltaTime;
-                    if (speed >= maxSpeedWithAcceleration)                    
-                        speed = maxSpeedWithAcceleration;                   
-                }
-            }
+            acceleration = Mathf.Clamp(acceleration + accelerationStep * accelerationMode, 0f, maxAcceleration);
         }
-
-        private void Deceleration()
-        {
-            if (speed > baseSpeed)
-            {
-                speed -= 0.5f * acceleration * Time.fixedDeltaTime;
-                if (speed < baseSpeed) 
-                    speed = baseSpeed;
-            }
-        }
-
     }
 }
