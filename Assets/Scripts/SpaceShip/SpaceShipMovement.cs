@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.Serialization;
+using UnityEngine;
 
 namespace PH.SpaceShip
 {
@@ -6,18 +7,28 @@ namespace PH.SpaceShip
     public class SpaceShipMovement : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] [Min(0)] private float speed;
+        [SerializeField] [Min(0)] private float baseSpeed;
+        [SerializeField] [Min(0)] private float acceleration;
+        [SerializeField] [Min(0)] private float maxSpeedWithAcceleration;
 
         private Rigidbody rb;
+        private float speed;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
         }
 
+        private void Start()
+        {
+            speed = baseSpeed;
+        }
+
         private void FixedUpdate()
         {
             Move();
+            Acceleration();
+            Deceleration();
         }
 
         private void Move()
@@ -29,5 +40,30 @@ namespace PH.SpaceShip
 
             rb.MovePosition(rb.position + movement);
         }
+        private void Acceleration()
+        {
+            //if(nitro>=1)  - next update feature?
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (speed < maxSpeedWithAcceleration)
+                {
+                    speed += acceleration * Time.fixedDeltaTime;
+                    if (speed >= maxSpeedWithAcceleration)                    
+                        speed = maxSpeedWithAcceleration;                   
+                }
+            }
+        }
+
+        private void Deceleration()
+        {
+            if (speed > baseSpeed)
+            {
+                speed -= 0.5f * acceleration * Time.fixedDeltaTime;
+                if (speed < baseSpeed) 
+                    speed = baseSpeed;
+            }
+        }
+
     }
 }

@@ -1926,6 +1926,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592676772}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1749249480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3050513190778781948, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
+    type: 3}
+  m_PrefabInstance: {fileID: 8491632178099193764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1749249485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749249480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a003c4e2ccef3c4f89740446aa36cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 25
 --- !u!1001 &8491632178099193764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1936,6 +1955,21 @@ PrefabInstance:
     - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
         type: 3}
       propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
+        type: 3}
+      propertyPath: acceleration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
+        type: 3}
+      propertyPath: maxSpeedWithAcceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
+        type: 3}
+      propertyPath: baseSpeed
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3050513190778781948, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
