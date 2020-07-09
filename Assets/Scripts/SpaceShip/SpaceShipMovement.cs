@@ -10,37 +10,46 @@ namespace PH.SpaceShip
     public class SpaceShipMovement : MonoBehaviour
     {
         [Header("Speed")]
-        [SerializeField] [Min(0f)] private float baseSpeed;
+        [SerializeField] private float maxSpeed;
+        [SerializeField] private float minSpeed;
         [SerializeField] [Min(1f)] private float rotationSpeed;
 
         [Header("Acceleration")]
-        [SerializeField] [Min(1f)] private float maxAcceleration;
-        [SerializeField] [Min(0f)] private float accelerationStep;
+        [SerializeField] [Min(0f)] private float acceleration;
 
         private Rigidbody rb;
 
-        private float speed;
-        private float acceleration;
+        private float currentSpeed;
+
+        public float CurrentSpeed
+        {
+            get => currentSpeed;
+            set => currentSpeed = Mathf.Clamp(value, minSpeed, maxSpeed);
+        }
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            speed = baseSpeed;
         }
 
         private void FixedUpdate()
         {
+            Acceleration();
             Move();
             Rotate();
-            Acceleration();
+        }
+
+        public void Hit(float stoppingForce)
+        {
+            CurrentSpeed -= stoppingForce;
         }
 
         private void Move()
         {
             var xMovement = Input.GetAxisRaw("Horizontal");
             var yMovement = Input.GetAxisRaw("Vertical");
-            
-            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * (speed + acceleration) * Time.fixedDeltaTime;
+
+            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * CurrentSpeed * Time.fixedDeltaTime;
 
             rb.MovePosition(rb.position + movement);
         }
@@ -54,9 +63,7 @@ namespace PH.SpaceShip
 
         private void Acceleration()
         {
-            var accelerationMode = Input.GetAxisRaw("Acceleration") * 2 - 1;
-
-            acceleration = Mathf.Clamp(acceleration + accelerationStep * accelerationMode, 0f, maxAcceleration);
+            CurrentSpeed += acceleration;
         }
     }
 }
