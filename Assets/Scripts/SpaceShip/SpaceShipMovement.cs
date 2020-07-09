@@ -21,6 +21,7 @@ namespace PH.SpaceShip
 
         private float speed;
         private float acceleration;
+        private float stopForce;
 
         private void Awake()
         {
@@ -35,12 +36,17 @@ namespace PH.SpaceShip
             Acceleration();
         }
 
+        public void Hit(float stoppingForce)
+        {
+            stopForce = stoppingForce;
+        }
+
         private void Move()
         {
             var xMovement = Input.GetAxisRaw("Horizontal");
             var yMovement = Input.GetAxisRaw("Vertical");
             
-            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * (speed + acceleration) * Time.fixedDeltaTime;
+            var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * speed * Time.fixedDeltaTime;
 
             rb.MovePosition(rb.position + movement);
         }
@@ -57,6 +63,13 @@ namespace PH.SpaceShip
             var accelerationMode = Input.GetAxisRaw("Acceleration") * 2 - 1;
 
             acceleration = Mathf.Clamp(acceleration + accelerationStep * accelerationMode, 0f, maxAcceleration);
+
+            if (stopForce > 0)
+            {
+                stopForce = Mathf.Clamp(stopForce - 1, 0f, baseSpeed);
+            }
+
+            speed = baseSpeed + acceleration - stopForce;
         }
     }
 }

@@ -496,7 +496,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -513,7 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112f7722ef21c6e41bc3e5e87fc03a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  baseSpeed: 0
+  rotationSpeed: 0
+  maxAcceleration: 0
+  accelerationStep: 0
 --- !u!1 &3243639993283477089
 GameObject:
   m_ObjectHideFlags: 0
