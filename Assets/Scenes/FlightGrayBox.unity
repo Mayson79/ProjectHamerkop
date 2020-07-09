@@ -3983,50 +3983,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: acceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: maxSpeedWithAcceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: baseSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: rotationSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: maxAcceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028870519811753608, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: accelerationStep
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3050513190778781948, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
         type: 3}
       propertyPath: m_Name
       value: SpaceShipTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 3291281547478724318, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7823154255238345107, guid: 8c24f03d6e5bc7c48a49cc44967d6238,
         type: 3}
