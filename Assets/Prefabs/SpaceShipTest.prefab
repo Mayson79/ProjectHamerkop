@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 4697212547030399236}
   - component: {fileID: 3291281547478724318}
   - component: {fileID: 3028870519811753608}
+  - component: {fileID: 7884038352627382878}
   m_Layer: 0
   m_Name: SpaceShipTest
   m_TagString: Untagged
@@ -517,6 +518,18 @@ MonoBehaviour:
   minSpeed: 0.05
   rotationSpeed: 15
   acceleration: 0.15
+--- !u!114 &7884038352627382878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3050513190778781948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea0fea5cfb16224e9efff8e7266dc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3243639993283477089
 GameObject:
   m_ObjectHideFlags: 0

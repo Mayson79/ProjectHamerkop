@@ -11,7 +11,10 @@ namespace PH.SpaceShip
 
         private void Update()
         {
-            transform.position = target.position + new Vector3(0f, yDistance, zDistance);
+            if (target != null)
+            {
+                transform.position = target.position + new Vector3(0f, yDistance, zDistance);
+            }
         }
     }
 }

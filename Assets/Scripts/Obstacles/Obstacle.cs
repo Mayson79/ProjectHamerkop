@@ -10,14 +10,21 @@ namespace PH.Obstacles
     public class Obstacle : MonoBehaviour
     {
         [SerializeField] private float stoppingForce;
+        [SerializeField] private int damage;
 
         private void OnCollisionEnter(Collision collision)
         {
             var spaceShipMovementComponent = collision.gameObject.GetComponent<SpaceShipMovement>();
+            var playerStatusComponent = collision.gameObject.GetComponent<PlayerStatus>();
 
             if (spaceShipMovementComponent != null)
             {
                 spaceShipMovementComponent.Hit(stoppingForce);
+            }
+
+            if (playerStatusComponent != null)
+            {
+                playerStatusComponent.Hit(damage);
             }
 
             Messenger.Execute<IHitObstacleTarget>(target => target.OnHitObstacle(name, stoppingForce));
