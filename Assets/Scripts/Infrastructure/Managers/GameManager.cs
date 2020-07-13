@@ -1,13 +1,17 @@
-﻿using System;
+﻿using PH.Infrastructure.Preferences;
+using System;
 using UnityEngine;
 
 namespace PH.Infrastructure.Managers
 {
     public class GameManager : AbstractManager<GameManager>
     {
+        [SerializeField] private GamePreferences gamePreferences;
         [SerializeField] private GameObject[] managers;
 
         private bool isGameLoaded;
+
+        public GamePreferences GamePreferences => gamePreferences;
 
         protected override void Start()
         {

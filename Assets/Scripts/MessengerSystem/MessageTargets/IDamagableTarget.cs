@@ -2,6 +2,6 @@
 {
     public interface IDamagableTarget : IMessageTarget
     {
-        void SetHealth(float health);
+        void SetHealth(float healthPercentage);
     }
 }

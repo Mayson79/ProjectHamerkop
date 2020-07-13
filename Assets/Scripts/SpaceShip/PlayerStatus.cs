@@ -1,25 +1,29 @@
 ﻿using UnityEngine;
 using PH.MessengerSystem;
 using PH.MessengerSystem.MessageTargets;
+using PH.Infrastructure.Preferences;
+using PH.Infrastructure.Managers;
 
 namespace PH.SpaceShip
 {
     public class PlayerStatus : MonoBehaviour
     {
-        [SerializeField] private GamePreferences gamePreferences;
+        private float currentHealthPoints;
+
+        private GamePreferences gamePreferences;
 
         private void Start()
         {
-            gamePreferences.CurrentHealthPoints = gamePreferences.MaxHealthPoints;
-            Messenger.Execute<IDamagableTarget>(target => target.SetHealth(gamePreferences.CurrentHealthPoints / gamePreferences.MaxHealthPoints));
+            gamePreferences = FindObjectOfType<GameManager>().GamePreferences;
+            currentHealthPoints = gamePreferences.MaxHealthPoints;
         }
 
         public void Hit(int damage)
         {
-            gamePreferences.CurrentHealthPoints -= damage;
-            Messenger.Execute<IDamagableTarget>(target => target.SetHealth(gamePreferences.CurrentHealthPoints / gamePreferences.MaxHealthPoints));
+            currentHealthPoints -= damage;
+            Messenger.Execute<IDamagableTarget>(target => target.SetHealth(currentHealthPoints / gamePreferences.MaxHealthPoints));
 
-            if (gamePreferences.CurrentHealthPoints < 1)
+            if (currentHealthPoints < 1)
             {
                 Destroy(gameObject);
             }
