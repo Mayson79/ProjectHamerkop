@@ -6,21 +6,20 @@ namespace PH.SpaceShip
 {
     public class PlayerStatus : MonoBehaviour
     {
-        [SerializeField] [Min(1)] private int maxHealthPoints;
-
-        private int healthPoints;
+        [SerializeField] private GamePreferences gamePreferences;
 
         private void Start()
         {
-            healthPoints = maxHealthPoints;
-            Messenger.Execute<IDamagableTarget>(target => target.setMaxHealth(maxHealthPoints));
+            gamePreferences.CurrentHealthPoints = gamePreferences.MaxHealthPoints;
+            Messenger.Execute<IDamagableTarget>(target => target.SetHealth(gamePreferences.CurrentHealthPoints / gamePreferences.MaxHealthPoints));
         }
 
         public void Hit(int damage)
         {
-            healthPoints -= damage;
-            Messenger.Execute<IDamagableTarget>(target => target.currentHealth(healthPoints));
-            if (healthPoints < 1)
+            gamePreferences.CurrentHealthPoints -= damage;
+            Messenger.Execute<IDamagableTarget>(target => target.SetHealth(gamePreferences.CurrentHealthPoints / gamePreferences.MaxHealthPoints));
+
+            if (gamePreferences.CurrentHealthPoints < 1)
             {
                 Destroy(gameObject);
             }
