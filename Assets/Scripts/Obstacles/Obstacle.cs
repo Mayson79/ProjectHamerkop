@@ -1,35 +1,53 @@
-﻿using PH.MessengerSystem;
+﻿using PH.Gameplay.Interfaces;
+using PH.MessengerSystem;
 using PH.MessengerSystem.MessageTargets;
 using PH.SpaceShip;
-using System.ComponentModel;
 using UnityEngine;
 
 namespace PH.Obstacles
 {
     [RequireComponent(typeof(Collider))]
-    public class Obstacle : MonoBehaviour
+    public class Obstacle : MonoBehaviour, IDamagable
     {
         [SerializeField] private float stoppingForce;
-        [SerializeField] private int damage;
+        [SerializeField] private float damage;
+        [SerializeField] private float health;
 
         private void OnCollisionEnter(Collision collision)
         {
             var spaceShipMovementComponent = collision.gameObject.GetComponent<SpaceShipMovement>();
-            var playerStatusComponent = collision.gameObject.GetComponent<PlayerStatus>();
+            var playerStatusComponent = collision.gameObject.GetComponent<IDamagable>();
 
             if (spaceShipMovementComponent != null)
             {
                 spaceShipMovementComponent.Hit(stoppingForce);
+
+                Messenger.Execute<IHitObstacleTarget>(target => target.OnHitObstacle(name, stoppingForce));
+
+                Destroy(gameObject);
             }
 
             if (playerStatusComponent != null)
             {
-                playerStatusComponent.Hit(damage);
+                playerStatusComponent.Damage(this, damage);
             }
+        }
 
-            Messenger.Execute<IHitObstacleTarget>(target => target.OnHitObstacle(name, stoppingForce));
+        public void Damage(object invoker, float amount)
+        {
+            if (!CanDamage(invoker, amount)) return;
 
-            Destroy(gameObject);
+            health -= amount;
+
+            if (health <= 0f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public bool CanDamage(object invoker, float amount)
+        {
+            return invoker.GetType() != GetType();
         }
     }
 }

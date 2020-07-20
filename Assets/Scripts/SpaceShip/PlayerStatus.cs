@@ -3,10 +3,11 @@ using PH.MessengerSystem;
 using PH.MessengerSystem.MessageTargets;
 using PH.Infrastructure.Preferences;
 using PH.Infrastructure.Managers;
+using PH.Gameplay.Interfaces;
 
 namespace PH.SpaceShip
 {
-    public class PlayerStatus : MonoBehaviour
+    public class PlayerStatus : MonoBehaviour, IDamagable
     {
         private float currentHealthPoints;
 
@@ -18,15 +19,23 @@ namespace PH.SpaceShip
             currentHealthPoints = gamePreferences.MaxHealthPoints;
         }
 
-        public void Hit(int damage)
+        public void Damage(object invoker, float amount)
         {
-            currentHealthPoints -= damage;
+            if (!CanDamage(invoker, amount)) return;
+
+            currentHealthPoints -= amount;
             Messenger.Execute<IDamagableTarget>(target => target.SetHealth(currentHealthPoints / gamePreferences.MaxHealthPoints));
 
             if (currentHealthPoints < 1)
             {
                 Destroy(gameObject);
             }
+        }
+
+        public bool CanDamage(object invoker, float amount)
+        {
+            var invokerType = invoker.GetType();
+            return invokerType != GetType() && invokerType != typeof(SpaceShipBullet);
         }
     }
 }
