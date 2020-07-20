@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01be8fbe42e71a4b8af5b0bafcdd21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSceneToLoad: MainMenu
+  firstSceneToLoad: FlightGrayBox
 --- !u!1 &1799610553
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b882b4397c79cf04ebe85e2ec76194c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePreferences: {fileID: 11400000, guid: afce00b4387f2994b9834610ea4643eb, type: 2}
   managers:
   - {fileID: 2013549982182056511, guid: ac1f21b4336003f4fb462fe5e8684b13, type: 3}
   - {fileID: 7630088181371851657, guid: bbd3c8762b973214892b8670c1d18030, type: 3}
