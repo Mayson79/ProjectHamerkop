@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8237582688775412795}
   - component: {fileID: 8237582688775412794}
   - component: {fileID: 8237582688775412933}
+  - component: {fileID: 8237582689729666237}
+  - component: {fileID: 8237582689729666236}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -66,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b2d15d687049494698c56d15872cd76, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ff2624d3fe81e945ab75d33259906b7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,6 +91,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthFillImage: {fileID: 8237582689719480149}
+  healthLeftToStartPulse: 0.3
+--- !u!95 &8237582689729666237
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237582688775412935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8a5ae0d2fed1ff4a8170420226f5caa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8237582689729666236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237582688775412935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &8237582689310789690
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +187,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9049d4a6386d82c46ae6a83c7d110134, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a9a0ec1228a7774ba7f26f7ce1cd1be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -220,12 +255,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6037736, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7264151, g: 0.14048593, b: 0.3194426, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 01dc69933a11fa74f8191054fba5d7bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c28101edb5633834ebfbccdc27cc7d15, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
