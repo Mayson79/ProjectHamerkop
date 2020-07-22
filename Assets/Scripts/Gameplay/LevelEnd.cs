@@ -8,7 +8,7 @@ namespace PH.Gameplay
 {
     public class LevelEnd : MonoBehaviour
     {
-        [SerializeField] private string nameOfNextLevel;
+        [SerializeField] private string nameOfNextLevel; // TODO remove, use LevelsManager
 
         private GamePreferences gamePreferences;
 

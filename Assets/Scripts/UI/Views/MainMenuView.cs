@@ -26,7 +26,7 @@ namespace PH.UI.Views
 
         private void OnStartClick()
         {
-            levelsManager.LoadStartLevel();
+            levelsManager.LoadChooseLevelScene();
         }
 
         private void OnExitClick()
