@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8237582688775412932}
   - component: {fileID: 8237582688775412795}
   - component: {fileID: 8237582688775412794}
-  - component: {fileID: 8237582688775412933}
   - component: {fileID: 8237582689729666237}
   - component: {fileID: 8237582689729666236}
   m_Layer: 5
@@ -78,20 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8237582688775412933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8237582688775412935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0fabc63e511699458cc726a1a08c11c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthFillImage: {fileID: 8237582689719480149}
-  healthLeftToStartPulse: 0.3
 --- !u!95 &8237582689729666237
 Animator:
   serializedVersion: 3
@@ -208,6 +193,7 @@ GameObject:
   - component: {fileID: 8237582689719480148}
   - component: {fileID: 8237582689719480138}
   - component: {fileID: 8237582689719480149}
+  - component: {fileID: 2189181045149015903}
   m_Layer: 5
   m_Name: Foreground
   m_TagString: Untagged
@@ -270,3 +256,17 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.3
+--- !u!114 &2189181045149015903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237582689719480151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fabc63e511699458cc726a1a08c11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthLeftToStartPulse: 0.3
+  animator: {fileID: 8237582689729666237}

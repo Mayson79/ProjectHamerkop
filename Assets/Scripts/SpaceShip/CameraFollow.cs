@@ -5,9 +5,10 @@ namespace PH.SpaceShip
     [RequireComponent(typeof(Camera))]
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform target;
         [SerializeField] private float yDistance;
         [SerializeField] private float zDistance;
+
+        [SerializeField] private Transform target;
 
         private void Update()
         {
@@ -15,6 +16,11 @@ namespace PH.SpaceShip
             {
                 transform.position = target.position + new Vector3(0f, yDistance, zDistance);
             }
+        }
+
+        public void StartFollow(Transform target)
+        {
+            this.target = target;
         }
     }
 }

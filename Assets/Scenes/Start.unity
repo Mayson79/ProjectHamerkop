@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01be8fbe42e71a4b8af5b0bafcdd21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSceneToLoad: FlightGrayBox
+  firstSceneToLoad: MainMenu
 --- !u!1 &1799610553
 GameObject:
   m_ObjectHideFlags: 0
