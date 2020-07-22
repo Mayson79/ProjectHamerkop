@@ -9,7 +9,6 @@ namespace PH.SpaceShip
     public class SpaceShipFire : MonoBehaviour
     {
         [SerializeField] private Transform BulletSpawnPoint;
-        [SerializeField] private string bulletObjectPoolTag;
 
         private GamePreferences gamePreferences;
 
@@ -23,7 +22,7 @@ namespace PH.SpaceShip
             gamePreferences = FindObjectOfType<GameManager>().GamePreferences;
             objectPoolManager = ObjectPoolManager.Instance;
 
-            objectPoolManager.CreatePool(bulletObjectPoolTag);
+            objectPoolManager.CreatePool(gamePreferences.BulletPoolTag);
         }
 
         private void FixedUpdate()

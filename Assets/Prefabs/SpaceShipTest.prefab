@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 8491632178099193767}
   m_Layer: 8
   m_Name: SpaceShipTest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -528,9 +528,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3028870519811753608
 MonoBehaviour:
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 50
-  minSpeed: 0.05
+  minSpeed: 1
   rotationSpeed: 15
   acceleration: 0.15
 --- !u!114 &7884038352627382878
@@ -573,7 +573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpawnPoint: {fileID: 6151700454095281138}
-  bulletObjectPoolTag: Bullet
 --- !u!114 &8491632178099193767
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,20 +6,24 @@ using UnityEngine.UI;
 namespace PH.UI.Views
 {
     [RequireComponent(typeof(Image))]
-    [RequireComponent(typeof(Animator))]
     public class HealthBarView : MonoBehaviour, IDamagableTarget
     {
-        [SerializeField] private Image healthFillImage;
         [SerializeField] private float healthLeftToStartPulse;
+        [SerializeField] private Animator animator;
 
-        Animator animator;
+        private Image healthFillImage;
 
         private void Start()
         {
             Messenger.Register<IDamagableTarget>(this);
-            animator = GetComponent<Animator>();
 
+            healthFillImage = GetComponent<Image>();
             healthFillImage.fillAmount = 1f;
+        }
+
+        private void OnDestroy()
+        {
+            Messenger.UnRegister<IDamagableTarget>(this);
         }
 
         public void SetHealth(float healthPercentage)

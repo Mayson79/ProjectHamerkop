@@ -1,8 +1,6 @@
-﻿using System.Runtime.Serialization;
-using UnityEngine;
-using PH.MessengerSystem.MessageTargets;
-using PH.MessengerSystem;
-using System;
+﻿using UnityEngine;
+using PH.Infrastructure.Preferences;
+using PH.Infrastructure.Managers;
 
 namespace PH.SpaceShip
 {
@@ -17,6 +15,8 @@ namespace PH.SpaceShip
         [Header("Acceleration")]
         [SerializeField] [Min(0f)] private float acceleration;
 
+        private GamePreferences gamePreferences;
+
         private Rigidbody rb;
 
         private float currentSpeed;
@@ -30,6 +30,8 @@ namespace PH.SpaceShip
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            gamePreferences = FindObjectOfType<GameManager>().GamePreferences;
+
         }
 
         private void FixedUpdate()
@@ -51,7 +53,15 @@ namespace PH.SpaceShip
 
             var movement = Vector3.ClampMagnitude(new Vector3(xMovement, yMovement, 1f), 1f) * CurrentSpeed * Time.fixedDeltaTime;
 
-            rb.MovePosition(rb.position + movement);
+            var horizontalConstrains = gamePreferences.HorizontalConstrains;
+            var verticalConstrains = gamePreferences.VerticalConstrains;
+
+            var newPosition = rb.position + movement;
+
+            newPosition.x = (Mathf.Abs(newPosition.x) >= horizontalConstrains) ? Mathf.Sign(newPosition.x) * horizontalConstrains : newPosition.x;
+            newPosition.y = (Mathf.Abs(newPosition.y) >= verticalConstrains) ? Mathf.Sign(newPosition.y) * verticalConstrains : newPosition.y;
+
+            rb.MovePosition(newPosition);
         }
 
         private void Rotate()

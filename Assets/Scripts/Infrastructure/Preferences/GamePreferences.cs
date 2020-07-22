@@ -15,6 +15,10 @@ namespace PH.Infrastructure.Preferences
         [SerializeField] private float bulletLifeTime;
         [SerializeField] private string bulletPoolTag;
 
+        [Header("Movement")]
+        [SerializeField] private float horizontalConstrains;
+        [SerializeField] private float verticalConstrains;
+
         [Header("Status")]
         [SerializeField] private float obstaclesCheckDistance;
 
@@ -58,6 +62,18 @@ namespace PH.Infrastructure.Preferences
         {
             get => bulletLifeTime;
             set => bulletLifeTime = value;
+        }
+
+        public float HorizontalConstrains
+        {
+            get => horizontalConstrains;
+            set => horizontalConstrains = value;
+        }
+
+        public float VerticalConstrains
+        {
+            get => verticalConstrains;
+            set => verticalConstrains = value;
         }
     }
 }
