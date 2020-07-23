@@ -17,6 +17,8 @@ namespace PH.Infrastructure.Managers
         [SerializeField] private bool isDebugMode;
         [SerializeField] private string debugLevelName;
 
+        private int CurrentLevelIndex;
+
         protected override void Start()
         {
             base.Start();
@@ -40,6 +42,24 @@ namespace PH.Infrastructure.Managers
         public void LoadChooseLevelScene()
         {
             SceneManager.LoadScene(chooseLevelScene.name);
+        }
+
+        public void StartLevelIndex(int index)
+        {
+            CurrentLevelIndex = index;
+        }
+
+        public void NextLevelIndex()
+        {
+            CurrentLevelIndex += 1;
+            if (CurrentLevelIndex > levels.Count() - 1)
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+            else
+            {
+                LoadLevel(levels[CurrentLevelIndex].name);
+            }
         }
 
         public IReadOnlyList<SceneAsset> Levels => levels;

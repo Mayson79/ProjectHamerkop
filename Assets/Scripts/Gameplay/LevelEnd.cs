@@ -8,13 +8,13 @@ namespace PH.Gameplay
 {
     public class LevelEnd : MonoBehaviour
     {
-        [SerializeField] private string nameOfNextLevel; // TODO remove, use LevelsManager
-
         private GamePreferences gamePreferences;
+        private LevelsManager levelsManager;
 
         private void Start()
         {
             gamePreferences = FindObjectOfType<GameManager>().GamePreferences;
+            levelsManager = FindObjectOfType<LevelsManager>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -22,7 +22,7 @@ namespace PH.Gameplay
             var objectPoolManager = ObjectPoolManager.Instance;
             objectPoolManager.ClearPool(gamePreferences.BulletPoolTag);
 
-            SceneManager.LoadScene(nameOfNextLevel);
+            levelsManager.NextLevelIndex();
         }
     }
 }

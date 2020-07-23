@@ -37,6 +37,7 @@ namespace PH.UI.Views
                 var index = i;
                 levelChoiceButton.GetComponent<Button>().onClick.AddListener(() => {
                     levelsManager.LoadLevel(levels[index].name);
+                    levelsManager.StartLevelIndex(index);
                 });
             }
         }
