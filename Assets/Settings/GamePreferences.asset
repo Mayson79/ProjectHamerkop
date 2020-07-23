@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: GamePreferences
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  bulletForce: 85
+  bulletForce: 110
   shootingRate: 3
   bulletDamage: 50
   bulletLifeTime: 7
   bulletPoolTag: Bullet
-  horizontalConstrains: 30
-  verticalConstrains: 30
+  horizontalConstrains: 10
+  verticalConstrains: 10
   obstaclesCheckDistance: 100
